@@ -407,14 +407,11 @@
   }
   html.print-mode .close-wordmark { opacity: 1 !important; transform: none !important; animation: none !important; }
 
-  /* vertical marquee of looping tool tiles (viability slide): two
-     staggered columns drift bottom-to-top at different speeds; each
-     column holds its tile set twice, so translateY(-50%) loops
-     seamlessly (tile spacing via margin, not gap, to keep the halves
-     exactly equal) */
+  /* vertical marquee of looping tool tiles (viability slide): one
+     column drifts bottom-to-top; it holds the tile set twice, so
+     translateY(-50%) loops seamlessly (tile spacing via margin, not
+     gap, to keep the halves exactly equal) */
   .vstrip {
-    display: grid; grid-template-columns: 1fr 1fr;
-    column-gap: clamp(8px, 1vw, 18px);
     height: 78vh; overflow: hidden;
     /* soften the strip's top and bottom edges */
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
@@ -739,33 +736,27 @@
 
   <!-- 14 · USING THE DATA — REGIONAL VIABILITY (marquee of tool clips) -->
   <section class="scene" data-label="Viability for growth" data-themes="process">
-    <div class="fg" style="display:grid;grid-template-columns:1fr 1.1fr;gap:4vw;align-items:center;width:min(1500px,94vw)">
-      <div class="strip vstrip" data-in style="--i:1">
-        <div class="vcol" style="--dur:46s">
-          <div class="vcol-inner">
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-1.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>01</span>Constraints map</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-3.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>03</span>Developability potential</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-5.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>05</span>Growth area identification</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-1.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>01</span>Constraints map</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-3.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>03</span>Developability potential</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-5.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>05</span>Growth area identification</div></div>
-          </div>
-        </div>
-        <div class="vcol" style="--dur:58s; --off:-23s">
-          <div class="vcol-inner">
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-2.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>02</span>Scenario builder</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-4.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>04</span>Development prioritisation</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-3.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>03</span>Developability potential</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-2.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>02</span>Scenario builder</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-4.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>04</span>Development prioritisation</div></div>
-            <div class="vcell"><video src="fol_deck_assets/clip-lc-3.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>03</span>Developability potential</div></div>
-          </div>
-        </div>
-      </div>
+    <div class="fg" style="display:grid;grid-template-columns:1.1fr 1fr;gap:4vw;align-items:center;width:min(1500px,94vw)">
       <div style="display:flex;flex-direction:column;gap:3vh">
         <div class="kicker" data-in style="--i:0">Once you have the data · regional scale</div>
         <h2 class="big" data-in style="--i:1">Testing viability for growth</h2>
         <div class="lede" data-in style="--i:2">With the evidence assembled, strategy becomes testable: compare growth scenarios across a whole region and see whether they stack up before committing to a plan.</div>
+      </div>
+      <div class="strip vstrip" data-in style="--i:1">
+        <div class="vcol" style="--dur:52s">
+          <div class="vcol-inner">
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-1.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>01</span>Constraints map</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-2.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>02</span>Scenario builder</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-3.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>03</span>Developability potential</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-4.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>04</span>Development prioritisation</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-5.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>05</span>Growth area identification</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-1.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>01</span>Constraints map</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-2.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>02</span>Scenario builder</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-3.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>03</span>Developability potential</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-4.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>04</span>Development prioritisation</div></div>
+            <div class="vcell"><video src="fol_deck_assets/clip-lc-5.mp4" muted loop playsinline preload="auto"></video><div class="cell-label"><span>05</span>Growth area identification</div></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
