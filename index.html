@@ -450,6 +450,26 @@
   }
   html.print-mode .emph { background-position: 100% 0 !important; animation: none !important; }
 
+  /* marker-pen highlight: a dark-on-pink copy of the line wipes across
+     the white one, left to right, once the scene has settled */
+  .hl {
+    position: relative; display: inline-block;
+    padding: .12em .3em; margin: -.12em -.3em;
+  }
+  .hl::after {
+    content: attr(data-text);
+    position: absolute; inset: 0;
+    padding: .12em .3em;
+    background: var(--accent);
+    color: #121212;
+    clip-path: inset(0 100% 0 0);
+  }
+  .is-active .hl::after {
+    animation: hlSweep .7s cubic-bezier(.65,0,.15,1) 2.8s both;
+  }
+  @keyframes hlSweep { to { clip-path: inset(0 0 0 0); } }
+  html.print-mode .hl::after { clip-path: inset(0 0 0 0); animation: none !important; }
+
   /* Place+ wordmark */
   .wordmark { font-weight: 500; color: var(--ink-strong); letter-spacing: -.02em; }
   .wordmark sup { color: inherit; }
@@ -512,19 +532,11 @@
     </div>
   </section>
 
-  <!-- 2 · THE CLAIM -------------------------------------------------- -->
-  <section class="scene" data-label="The claim" data-themes="process">
+  <!-- 2 · THE CHALLENGE ---------------------------------------------- -->
+  <section class="scene" data-label="The challenge" data-themes="process">
     <div class="fg" style="display:flex;flex-direction:column;gap:4vh;align-items:flex-start;width:min(1200px,90vw)">
-      <div class="kicker" data-in style="--i:0">What we kept hearing</div>
-      <h2 class="big split">&ldquo;There isn&rsquo;t enough data available<br>for evidence&#8209;based planning.&rdquo;</h2>
-      <div class="lede muted" data-in style="--i:8">Planners, strategists, clients — everyone said some version of this.</div>
-    </div>
-  </section>
-
-  <!-- 3 · WE DISAGREE ------------------------------------------------ -->
-  <section class="scene" data-label="We disagree" data-themes="">
-    <div class="fg" style="width:min(1200px,90vw)">
-      <h1 class="mega split" style="font-size:clamp(64px,13vw,220px)">Except<br>it is available.</h1>
+      <div class="kicker" data-in style="--i:0">The challenge today</div>
+      <h2 class="big split">Planning in England and Wales<br>is being held back by process,<br><span class="emph">not by lack of information.</span></h2>
     </div>
   </section>
 
@@ -541,17 +553,17 @@
       <span class="chip" data-in style="--i:8; top:62%; left:7%">Insight buried</span>
     </div>
     <div class="fg" style="align-self:flex-start;margin-top:auto;width:min(1200px,90vw)">
-      <div class="kicker" data-in style="--i:0">The real problem</div>
-      <h2 class="big" data-in style="--i:1">The data is there.<br>It&rsquo;s just <span class="accent">locked away</span>.</h2>
+      <div class="kicker" data-in style="--i:0">The challenge today</div>
+      <h2 class="big" data-in style="--i:1">Significant time is spent navigating fragmented datasets and reconciling inconsistent formats.</h2>
     </div>
   </section>
 
   <!-- 5 · THE COST --------------------------------------------------- -->
   <section class="scene" data-label="The cost" data-themes="process">
     <div class="fg" style="display:flex;flex-direction:column;gap:5vh;width:min(1200px,90vw)">
-      <div class="kicker" data-in style="--i:0">What that costs us</div>
-      <h2 class="big" data-in style="--i:1">Evidence gathering eats<br>the time meant for <span class="accent">planning</span>.</h2>
-      <div class="lede" data-in style="--i:3">Teams spend their hours navigating portals, reconciling formats and re&#8209;assembling the same evidence base — instead of identifying trends, opportunities and risks.</div>
+      <div class="kicker" data-in style="--i:0">What this costs us</div>
+      <h2 class="big" data-in style="--i:1">As government and industry work towards major housing and infrastructure targets, this creates delays in moving from <span class="emph">evidence to action</span>.</h2>
+      <div class="lede" data-in style="--i:3"><span class="hl" data-text="Planning shouldn&rsquo;t be a data-gathering exercise; it should be a creative, strategic one.">Planning shouldn&rsquo;t be a data-gathering exercise; it should be a creative, strategic one.</span></div>
     </div>
   </section>
 
@@ -559,7 +571,7 @@
   <section class="scene" data-label="So we built Place+" data-themes="">
     <video class="bg" src="fol_deck_assets/clip-title.mp4" muted playsinline preload="auto" style="object-fit:contain;background:#0a0a0a"></video>
     <div class="fg" style="margin-top:auto;align-self:flex-start;width:min(1200px,90vw);padding-bottom:4vh">
-      <div class="kicker" data-in style="--i:4">So we built a platform · launched May 2026 · free to access</div>
+      <div class="kicker" data-in style="--i:4">So we built a digital placemaking platform · launched May 2026</div>
     </div>
   </section>
 
@@ -567,7 +579,7 @@
   <section class="scene" data-label="Mission" data-themes="people process">
     <div class="fg" style="display:flex;flex-direction:column;gap:5vh;width:min(1200px,90vw)">
       <div class="kicker" data-in style="--i:0">One overarching principle</div>
-      <h2 class="big" data-in style="--i:1">Enable built environment practitioners to make <span class="emph">informed strategic decisions</span> that drive sustainable, inclusive growth.</h2>
+      <h2 class="big" data-in style="--i:1">Free up time so built environment practitioners can make <span class="emph">faster, more evidence-led and more confident decisions</span> that shape towns, cities and regions.</h2>
     </div>
   </section>
 
@@ -608,10 +620,19 @@
       <div class="mosaic" aria-hidden="true"></div>
       <div class="stage-scrim"></div>
       <div class="stage-copy">
-        <div class="kicker" data-in style="--i:0">First release · free to access · placeplus.priorandpartners.com</div>
-        <h2 class="big" data-in style="--i:1">The National Place Portrait</h2>
-        <div class="lede" data-in style="--i:2">Hundreds of siloed national datasets — one single source of truth.</div>
+        <div class="kicker" data-in style="--i:0">Its first release</div>
+        <h2 class="big" data-in style="--i:1">National Place Portrait</h2>
+        <div class="lede" data-in style="--i:2">A free-to-access view of place conditions across England and Wales</div>
       </div>
+    </div>
+  </section>
+
+  <!-- 8b · SINGLE SOURCE OF TRUTH ------------------------------------- -->
+  <section class="scene" data-label="Single source of truth" data-themes="process">
+    <div class="fg" style="display:flex;flex-direction:column;gap:5vh;width:min(1200px,90vw)">
+      <div class="kicker" data-in style="--i:0">Turning complexity into clarity</div>
+      <h2 class="big" data-in style="--i:1">A coherent, single<br>source of truth.</h2>
+      <div class="lede" data-in style="--i:3">Hundreds of datasets. One intuitive interface.</div>
     </div>
   </section>
 
@@ -627,9 +648,9 @@
   <!-- 10 · TOOLS TO THINK WITH --------------------------------------- -->
   <section class="scene" data-label="Tools to think with" data-themes="culture">
     <div class="fg" style="display:flex;flex-direction:column;gap:4vh;align-items:flex-start;width:min(1200px,90vw)">
-      <div class="kicker" data-in style="--i:0">Our guiding principle</div>
-      <h1 class="mega split" style="font-size:clamp(54px,10vw,170px)">Tools to<br><span class="emph">think</span> with.</h1>
-      <div class="lede muted" data-in style="--i:10">Instruments for exploration, argument and discovery.</div>
+      <div class="kicker" data-in style="--i:0">How it works</div>
+      <h1 class="mega split" style="font-size:clamp(54px,10vw,170px)">A tool to<br><span class="emph">think</span> with.</h1>
+      <div class="lede muted" data-in style="--i:10">For every team, regardless of their technical resources.</div>
     </div>
   </section>
 
@@ -640,7 +661,7 @@
       <div class="prin-list">
         <div class="prin" data-in style="--i:1"><span class="num">01</span><h3>Intuitive interface &amp; experience</h3></div>
         <div class="prin" data-in style="--i:2"><span class="num">02</span><h3>Rapid iteration</h3></div>
-        <div class="prin" data-in style="--i:3"><span class="num">03</span><h3>Transparent, examinable results</h3></div>
+        <div class="prin" data-in style="--i:3"><span class="num">03</span><h3>Transparent, evidence-backed results</h3></div>
         <div class="prin" data-in style="--i:4"><span class="num">04</span><h3>Scalable framework</h3></div>
       </div>
     </div>
@@ -653,10 +674,10 @@
     <div class="fg" style="align-self:flex-start;margin-top:auto;width:min(1300px,92vw)">
       <div class="kicker" style="margin-bottom:1.2em">The Portrait, live · placeplus.priorandpartners.com</div>
       <div id="cap-track">
-        <div class="cap on"><span class="idx">01/05</span>Hundreds of datasets, one interface</div>
-        <div class="cap"><span class="idx">02/05</span>Explore your way</div>
+        <div class="cap on"><span class="idx">01/05</span>Move between themes, scales and locations in one interface</div>
+        <div class="cap"><span class="idx">02/05</span>Explore place, your way</div>
         <div class="cap"><span class="idx">03/05</span>Cross-sector analysis, one joined-up picture</div>
-        <div class="cap"><span class="idx">04/05</span>Tell your data-driven stories</div>
+        <div class="cap"><span class="idx">04/05</span>Tell your compelling, data-driven stories</div>
         <div class="cap"><span class="idx">05/05</span>People-driven analysis, AI-powered insights</div>
       </div>
     </div>
@@ -669,7 +690,7 @@
     <div class="fg" style="align-self:flex-start;margin-top:auto;width:min(1300px,92vw)">
       <div class="kicker" style="margin-bottom:1.2em">Hands on · every move you&rsquo;re watching is two clicks</div>
       <div id="reel-caps">
-        <div class="cap on" data-t="0"><span class="idx">01/06</span>Ask a sharper question</div>
+        <div class="cap on" data-t="0"><span class="idx">01/06</span>Ask more informed questions</div>
         <div class="cap" data-t="4"><span class="idx">02/06</span>Dive from nation to neighbourhood</div>
         <div class="cap" data-t="12"><span class="idx">03/06</span>Benchmark any place, instantly</div>
         <div class="cap" data-t="16"><span class="idx">04/06</span>Isolate what matters</div>
@@ -710,7 +731,7 @@
     <div class="fg close-stack">
       <div class="wordmark close-wordmark" data-in>Place<sup>+</sup></div>
       <div class="close-main">
-        <h1 class="mega split" style="--lbase:2.2s;font-size:clamp(36px,5.2vw,84px)">Explore place.<br>Understand what matters.<br>Shape your future.</h1>
+        <h1 class="mega split" style="--lbase:2.2s;font-size:clamp(36px,5.2vw,84px)">Explore place.<br>Understand what matters.<br>Begin shaping your future.</h1>
         <div data-in style="--i:22">
           <div style="font-weight:500;color:var(--ink);font-size:clamp(15px,1.4vw,22px)">A digital placemaking platform by Prior + Partners</div>
           <div class="kicker" style="margin-top:1.4em">Free to access · <b>placeplus.priorandpartners.com</b></div>
