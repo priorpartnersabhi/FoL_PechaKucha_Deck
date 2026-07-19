@@ -407,6 +407,25 @@
   }
   html.print-mode .close-wordmark { opacity: 1 !important; transform: none !important; animation: none !important; }
 
+  /* filmstrip of looping tool tiles (capacity-testing slide) */
+  .strip {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: clamp(8px, 1vw, 18px); width: 100%;
+  }
+  .strip .cell video {
+    display: block; width: 100%;
+    aspect-ratio: 16 / 9; object-fit: cover;
+    border: 1px solid var(--line);
+  }
+  .cell-label {
+    font-family: var(--mono); font-weight: 500;
+    font-size: clamp(9px, .75vw, 12px);
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: .8em;
+  }
+  .cell-label span { color: var(--accent); margin-right: .9em; }
+
   /* placeholder slots for "since then" slides */
   .ph-media {
     border: 1px dashed var(--panel-line);
@@ -499,7 +518,7 @@
   html.print-mode .cap { display: block; animation: none; }
   html.print-mode .src-chip { opacity: 1 !important; transform: translate(-50%, -50%) rotate(var(--r, 0deg)) !important; animation: none !important; }
   html.print-mode .mosaic { display: none; }
-  @media print { .stage-video video { display: none; } }
+  @media print { .stage-video video, .strip video { display: none; } }
   @media print {
     .scene video.bg { display: none; }
     .scene { height: 100vh; }
@@ -718,14 +737,34 @@
 
   <!-- 15 · USING THE DATA — MASTERPLAN CAPACITY TESTING ---------------- -->
   <section class="scene" data-label="Capacity testing" data-themes="process">
-    <div class="fg" style="display:grid;grid-template-columns:1fr 1.2fr;gap:4vw;align-items:center;width:min(1300px,92vw)">
-      <div style="display:flex;flex-direction:column;gap:3vh">
+    <div class="fg" style="display:flex;flex-direction:column;gap:4vh;align-items:flex-start;width:min(1500px,94vw)">
+      <div style="display:flex;flex-direction:column;gap:2.5vh">
         <div class="kicker" data-in style="--i:0">Once you have the data · masterplan scale</div>
         <h2 class="big" data-in style="--i:1">Testing housing capacity and needs</h2>
-        <div class="lede" data-in style="--i:2">Test housing capacity and social infrastructure requirements dynamically as a masterplan evolves, so every design move stays tied to real numbers.</div>
+        <div class="lede" data-in style="--i:2">Five connected tools, from constraints to growth areas — every design move tied to real numbers.</div>
       </div>
-      <!-- PLACEHOLDER: drop project video here -->
-      <div class="ph-media" data-in style="--i:3">Video slot</div>
+      <div class="strip">
+        <div class="cell" data-in style="--i:3">
+          <video src="fol_deck_assets/clip-lc-1.mp4" muted loop playsinline preload="auto"></video>
+          <div class="cell-label"><span>01</span>Constraints map</div>
+        </div>
+        <div class="cell" data-in style="--i:4">
+          <video src="fol_deck_assets/clip-lc-2.mp4" muted loop playsinline preload="auto"></video>
+          <div class="cell-label"><span>02</span>Scenario builder</div>
+        </div>
+        <div class="cell" data-in style="--i:5">
+          <video src="fol_deck_assets/clip-lc-3.mp4" muted loop playsinline preload="auto"></video>
+          <div class="cell-label"><span>03</span>Developability potential</div>
+        </div>
+        <div class="cell" data-in style="--i:6">
+          <video src="fol_deck_assets/clip-lc-4.mp4" muted loop playsinline preload="auto"></video>
+          <div class="cell-label"><span>04</span>Development prioritisation</div>
+        </div>
+        <div class="cell" data-in style="--i:7">
+          <video src="fol_deck_assets/clip-lc-5.mp4" muted loop playsinline preload="auto"></video>
+          <div class="cell-label"><span>05</span>Growth area identification</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -865,8 +904,7 @@
     if (i === current) return;
     if (current >= 0) {
       scenes[current].classList.remove("is-active");
-      var v0 = scenes[current].querySelector("video");
-      if (v0) v0.pause();
+      scenes[current].querySelectorAll("video").forEach(function (v0) { v0.pause(); });
     }
     current = i;
     var sc = scenes[i];
@@ -877,8 +915,9 @@
       void el.offsetWidth;
       el.style.animation = "";
     });
-    var v = sc.querySelector("video");
-    if (v) { v.currentTime = 0; v.play().catch(function () {}); }
+    sc.querySelectorAll("video").forEach(function (v) {
+      v.currentTime = 0; v.play().catch(function () {});
+    });
 
     segs.forEach(function (s, k) {
       s.classList.toggle("done", k < i);
