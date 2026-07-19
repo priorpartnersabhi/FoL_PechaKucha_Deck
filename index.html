@@ -570,7 +570,10 @@
   <!-- 6 · SO WE BUILT (title clip) ----------------------------------- -->
   <section class="scene" data-label="So we built Place+" data-themes="">
     <video class="bg" src="fol_deck_assets/clip-title.mp4" muted playsinline preload="auto" style="object-fit:contain;background:#0a0a0a"></video>
-    <div class="fg" style="margin-top:auto;align-self:flex-start;width:min(1200px,90vw);padding-bottom:4vh">
+    <!-- margin-left pushes the caption inside the 16:9 video frame when the
+         screen is wider than 16:9 (pillarboxed), so it never straddles the
+         boundary between the two blacks -->
+    <div class="fg" style="margin-top:auto;align-self:flex-start;width:min(1200px,90vw);padding-bottom:4vh;margin-left:max(0px, calc((100vw - 177.78vh) / 2 - 5vw))">
       <div class="kicker" data-in style="--i:4">So we built a digital placemaking platform · launched May 2026</div>
     </div>
   </section>
