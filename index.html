@@ -498,6 +498,10 @@
     animation: hlSweep .7s cubic-bezier(.65,0,.15,1) 2.8s both;
   }
   @keyframes hlSweep { to { clip-path: inset(0 0 0 0); } }
+  /* inline variant: no negative side margins, so the highlight keeps
+     clear of the neighbouring words mid-sentence */
+  .hl.hl-inline { margin: -.12em 0; padding: .12em .22em; }
+  .hl.hl-inline::after { padding: .12em .22em; }
   html.print-mode .hl::after { clip-path: inset(0 0 0 0); animation: none !important; }
 
   /* Place+ wordmark */
@@ -656,7 +660,7 @@
       <div class="stage-copy">
         <div class="kicker" data-in style="--i:0">Its first release</div>
         <h2 class="big" data-in style="--i:1">National Place Portrait</h2>
-        <div class="lede" data-in style="--i:2">A <span class="hl" data-text="free-to-access">free-to-access</span> view of place conditions across England and Wales</div>
+        <div class="lede" data-in style="--i:2">A <span class="hl hl-inline" data-text="free-to-access">free-to-access</span> view of place conditions across England and Wales</div>
       </div>
     </div>
   </section>
